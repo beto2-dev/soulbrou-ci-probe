@@ -42,3 +42,6 @@ Thumbs.db
 # Test artifacts
 test-results/
 *.exec
+
+# Kotlin
+.kotlin/
