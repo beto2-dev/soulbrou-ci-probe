@@ -659,6 +659,12 @@ private class FunctionBody(
         val lhs = reg(insn.b)
         val rhs = reg(insn.c.toInt())
         when {
+            insn.opcode == 0x93 || insn.opcode == 0x94 ->
+                out.append(dst).append(" = SB_I(").append(intOpName(insn.opcode))
+                    .append("(env, ").append(lhs).append(".i, ").append(rhs).append(".i));\n")
+            insn.opcode == 0x9e || insn.opcode == 0x9f ->
+                out.append(dst).append(" = SB_J(").append(longOpName(insn.opcode))
+                    .append("(env, ").append(lhs).append(".j, ").append(rhs).append(".j));\n")
             insn.opcode in 0x90..0x9a ->
                 out.append(dst).append(" = SB_I(").append(intOpName(insn.opcode))
                     .append("(").append(lhs).append(".i, ").append(rhs).append(".i));\n")
