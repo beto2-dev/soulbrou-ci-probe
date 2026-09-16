@@ -33,7 +33,7 @@ class E2eProtectionInstrumentedTest {
 
     private fun readFixtureApk(): ByteArray {
         val context = InstrumentationRegistry.getInstrumentation().context
-        return context.assets.open("testapp.apk").use { it.readBytes() }
+        return context.assets.open("testapp/testapp.apk").use { it.readBytes() }
     }
 
     private fun methodKeysOf(apkBytes: ByteArray, methodName: String): List<MethodKey> {

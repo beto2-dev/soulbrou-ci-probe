@@ -116,17 +116,8 @@ val copyTestAppFixture by tasks.registering(Copy::class) {
     rename { "testapp.apk" }
 }
 
-androidComponents {
-    onVariants { variant ->
-        if (variant.name.contains("AndroidTest", ignoreCase = true)) {
-            val mergeAssets = tasks.matching {
-                it.name.equals("merge${variant.name}Assets", ignoreCase = true)
-            }
-            mergeAssets.configureEach {
-                dependsOn(copyTestAppFixture)
-            }
-        }
-    }
+tasks.matching { it.name == "mergeDebugAndroidTestAssets" }.configureEach {
+    dependsOn(copyTestAppFixture)
 }
 
 android.sourceSets.getByName("androidTest") {
