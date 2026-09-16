@@ -1,0 +1,44 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Android / IntelliJ
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+captures/
+local.properties
+.idea/
+*.iml
+.navigation/
+keystore.properties
+
+# Native
+*.o
+*.so.tmp
+.cxx/
+
+# Signing material (never commit keystores)
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Secrets and environment
+.env
+*.env
+secrets/
+github_token*
+
+# Logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+test-results/
+*.exec
