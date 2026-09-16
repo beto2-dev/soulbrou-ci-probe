@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Shield outline -->
+    <path
+        android:fillColor="#4F46E5"
+        android:pathData="M54,26 L74,34 C74,52 70,68 54,80 C38,68 34,52 34,34 Z" />
+
+    <!-- Inner shield face -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M54,31 L69,37.5 C69,51.5 66,64.5 54,74.5 C42,64.5 39,51.5 39,37.5 Z" />
+
+    <!-- Circuit traces -->
+    <path
+        android:strokeColor="#C7D2FE"
+        android:strokeWidth="2"
+        android:pathData="M54,40 L54,64 M46,48 L54,48 L58,52 M54,54 L62,54 L66,50" />
+
+    <!-- Core node -->
+    <path
+        android:fillColor="#E0E7FF"
+        android:pathData="M52,62 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+</vector>
