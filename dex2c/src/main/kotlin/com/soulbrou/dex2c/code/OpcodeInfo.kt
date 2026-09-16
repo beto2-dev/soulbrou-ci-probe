@@ -241,8 +241,8 @@ object OpcodeInfo {
         Simple("shr-int/lit8", "22b", "NONE"),
         Simple("ushr-int/lit8", "22b", "NONE"),                            // 0xe2
         null, null, null, null, null, null, null, null, null, null,          // 0xe3-0xec
-        null, null, null, null, null, null, null, null, null, null, null,
-        null, null, null, null, null, null, null, null, null, null, null, null, null, // 0xed-0xf9
+        null, null, null, null, null, null, null, null, null, null, null,    // 0xed-0xf7
+        null, null,                                                          // 0xf8-0xf9
         Simple("invoke-polymorphic", "45cc", "METHOD"),                     // 0xfa
         Simple("invoke-polymorphic/range", "4rcc", "METHOD"),
         Simple("invoke-custom", "35c", "CALL_SITE"),
@@ -252,7 +252,13 @@ object OpcodeInfo {
     )
 
     val table: Array<OpcodeSpec?> = Array(raw.size) { i ->
-        raw[i]?.let { OpcodeSpec(it.name, InsnFormat.valueOf("F" + it.fmt), RefKind.valueOf(it.ref)) }
+        raw[i]?.let {
+            OpcodeSpec(
+                it.name,
+                InsnFormat.valueOf("F" + it.fmt.uppercase()),
+                RefKind.valueOf(it.ref),
+            )
+        }
     }
 
     init {

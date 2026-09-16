@@ -222,7 +222,8 @@ class DexWriter(private val document: DexDocument) {
             for ((key, types) in unique) {
                 align4()
                 typeListOffsets[key] = dataOff + data.length
-                data.write(Leb128Writer.writeUnsignedLeb128(types.size))
+                // type_list.size is a plain u4 per the DEX specification.
+                data.u4(types.size)
                 for (type in types) {
                     data.u2(document.typeIndexOf(type))
                 }
@@ -490,18 +491,34 @@ class DexWriter(private val document: DexDocument) {
                     }
                 }
 
-                writeDelta(staticFields.map { document.fieldIndexOf(it.field) })
-                for (field in staticFields) data.write(Leb128Writer.writeUnsignedLeb128(field.accessFlags))
-                writeDelta(instanceFields.map { document.fieldIndexOf(it.field) })
-                for (field in instanceFields) data.write(Leb128Writer.writeUnsignedLeb128(field.accessFlags))
+                // encoded_field: field_idx_diff, access_flags (interleaved).
+                var previousField = 0
+                for (field in staticFields) {
+                    data.write(Leb128Writer.writeUnsignedLeb128(document.fieldIndexOf(field.field) - previousField))
+                    previousField = document.fieldIndexOf(field.field)
+                    data.write(Leb128Writer.writeUnsignedLeb128(field.accessFlags))
+                }
+                previousField = 0
+                for (field in instanceFields) {
+                    data.write(Leb128Writer.writeUnsignedLeb128(document.fieldIndexOf(field.field) - previousField))
+                    previousField = document.fieldIndexOf(field.field)
+                    data.write(Leb128Writer.writeUnsignedLeb128(field.accessFlags))
+                }
 
-                writeDelta(directMethods.map { document.methodIndexOf(it.method) })
+                // encoded_method: method_idx_diff, access_flags, code_off.
+                var previousMethod = 0
                 for (method in directMethods) {
+                    val index = document.methodIndexOf(method.method)
+                    data.write(Leb128Writer.writeUnsignedLeb128(index - previousMethod))
+                    previousMethod = index
                     data.write(Leb128Writer.writeUnsignedLeb128(method.accessFlags))
                     data.write(Leb128Writer.writeUnsignedLeb128(method.code?.let { codeOffsets[it] ?: 0 } ?: 0))
                 }
-                writeDelta(virtualMethods.map { document.methodIndexOf(it.method) })
+                previousMethod = 0
                 for (method in virtualMethods) {
+                    val index = document.methodIndexOf(method.method)
+                    data.write(Leb128Writer.writeUnsignedLeb128(index - previousMethod))
+                    previousMethod = index
                     data.write(Leb128Writer.writeUnsignedLeb128(method.accessFlags))
                     data.write(Leb128Writer.writeUnsignedLeb128(method.code?.let { codeOffsets[it] ?: 0 } ?: 0))
                 }
@@ -559,7 +576,8 @@ class DexWriter(private val document: DexDocument) {
         entries.addAll(mapEntries)
         entries.add(DexMapEntry(MapItemType.MAP_LIST, 0, mapOffset, 1))
 
-        data.write(Leb128Writer.writeUnsignedLeb128(entries.size))
+        // map_list.size is a plain u4 per the DEX specification.
+        data.u4(entries.size)
         for (entry in entries) {
             data.u2(entry.type)
             data.u2(0)
@@ -587,8 +605,9 @@ class DexWriter(private val document: DexDocument) {
         for (ch in magic) ids.u1(ch.code)
         repeat(20) { ids.u1(0) } // signature placeholder
         ids.u4(0) // checksum placeholder
-        ids.u4(0x70)
-        ids.u4(0x12345678)
+        ids.u4(0) // file_size placeholder, patched by assemble
+        ids.u4(0x70) // header_size
+        ids.u4(0x12345678) // endian_tag
         ids.u4(0); ids.u4(0) // link size / offset
         ids.u4(mapOffset)
         ids.u4(document.strings.size)

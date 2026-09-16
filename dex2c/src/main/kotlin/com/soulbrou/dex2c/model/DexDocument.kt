@@ -70,6 +70,7 @@ class DexDocument : DexCodeCodec.ReferenceResolver {
         protos.unseal()
         fields.unseal()
         methods.unseal()
+        classes.unseal()
     }
 
     /** True when the given code can be processed by the engine. */
