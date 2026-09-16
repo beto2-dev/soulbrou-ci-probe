@@ -99,11 +99,13 @@ data class KeystoreSummary(
 )
 
 /**
- * Outcome of a full protection build.
+ * Outcome of a full protection build. The signed APK bytes are carried
+ * transiently for the result screen and are never serialized.
  */
 data class BuildOutcome(
     val success: Boolean,
     val outputApkPath: String?,
     val comparison: BuildComparison?,
     val errorMessage: String? = null,
+    val outputApkBytes: ByteArray? = null,
 )
