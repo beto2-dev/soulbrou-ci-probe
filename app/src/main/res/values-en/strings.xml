@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Soulbrou</string>
+
+    <!-- Bottom navigation tabs -->
+    <string name="tab_home">Home</string>
+    <string name="tab_selector">APK</string>
+    <string name="tab_methods">Methods</string>
+    <string name="tab_protection">Protection</string>
+    <string name="tab_keystore">Keys</string>
+    <string name="tab_build">Build</string>
+
+    <!-- Common actions -->
+    <string name="action_next">Continue</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_close">Close</string>
+    <string name="action_generate">Generate</string>
+    <string name="action_import">Import</string>
+    <string name="action_save">Save</string>
+    <string name="action_share">Share</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_view_result">View result</string>
+
+    <!-- Home -->
+    <string name="home_title">Dashboard</string>
+    <string name="home_subtitle">Protect third party applications by turning their bytecode into native libraries</string>
+    <string name="home_stat_builds">Builds</string>
+    <string name="home_stat_success">Success rate</string>
+    <string name="home_stat_native_methods">Native methods</string>
+    <string name="home_stat_last">Last build</string>
+    <string name="home_no_builds">No builds recorded yet</string>
+    <string name="home_get_started">Start by selecting an APK to protect</string>
+    <string name="home_runtime_version">Native engine</string>
+    <string name="home_selftest_running">Checking the native engine</string>
+    <string name="home_selftest_ok">Native engine operational</string>
+    <string name="home_selftest_failed">Native engine self test failed</string>
+    <string name="home_workflow_title">Workflow</string>
+    <string name="home_workflow_step_1">Pick the input APK and review its automatic analysis</string>
+    <string name="home_workflow_step_2">Choose which methods become native code</string>
+    <string name="home_workflow_step_3">Configure active protections and the signing keystore</string>
+    <string name="home_workflow_step_4">Run the build and compare the result</string>
+    <string name="home_apk_selected">APK ready to work with</string>
+    <string name="home_apk_none">No APK selected</string>
+
+    <!-- APK selector -->
+    <string name="selector_title">APK selection</string>
+    <string name="selector_subtitle">Choose an installation file and Soulbrou will analyze it automatically</string>
+    <string name="selector_pick">Choose APK</string>
+    <string name="selector_drop_hint">On split screens you can also drag and drop the file here</string>
+    <string name="selector_analyzing">Analyzing APK</string>
+    <string name="selector_invalid_apk">The selected file is not a valid APK</string>
+    <string name="selector_analysis_error">The APK could not be analyzed</string>
+    <string name="selector_info_package">Package</string>
+    <string name="selector_info_version">Version</string>
+    <string name="selector_info_min_sdk">Min SDK</string>
+    <string name="selector_info_target_sdk">Target SDK</string>
+    <string name="selector_info_size">Size</string>
+    <string name="selector_info_classes">Classes</string>
+    <string name="selector_info_methods">Methods</string>
+    <string name="selector_info_dex">Dex files</string>
+    <string name="selector_info_abis">Native ABIs</string>
+    <string name="selector_info_abis_none">No native libraries</string>
+    <string name="selector_info_permissions">Permissions (%1$d)</string>
+    <string name="selector_change">Change APK</string>
+    <string name="selector_clear">Clear selection</string>
+    <string name="selector_ready">Analysis complete. Continue to the method selection.</string>
+    <string name="selector_read_error">The chosen file could not be read</string>
+
+    <!-- Method selector -->
+    <string name="methods_title">Method selection</string>
+    <string name="methods_subtitle">Mark the methods that will be converted to native code</string>
+    <string name="methods_search_hint">Search class or method</string>
+    <string name="methods_selected_count">%1$d methods selected</string>
+    <string name="methods_empty">This APK exposes no convertible methods</string>
+    <string name="methods_no_apk">Select an APK first on the corresponding tab</string>
+    <string name="methods_filter_no_results">No entries match the filter</string>
+    <string name="methods_preview_title">Smali preview</string>
+    <string name="methods_preview_empty">No code to display</string>
+    <string name="methods_preview_note">The bytecode shown here is translated to C and compiled as a native library</string>
+    <string name="methods_package_label">Package %1$s</string>
+    <string name="methods_class_count">%1$d classes</string>
+    <string name="methods_expand_package">Expand package</string>
+    <string name="methods_expand_class">Expand class</string>
+    <string name="methods_abstract_method">Abstract or native method without body</string>
+
+    <!-- Protection configuration -->
+    <string name="protection_title">Protection configuration</string>
+    <string name="protection_subtitle">Enable the countermeasures injected into the protected APK</string>
+    <string name="protection_unpatchable">Unpatchable mode</string>
+    <string name="protection_unpatchable_desc">Locks the configuration inside the encrypted native blob so it cannot be disabled by recompiling resources</string>
+    <string name="protection_type_anti_root">Anti root</string>
+    <string name="protection_type_anti_root_desc">Detects su binaries, Magisk, SuperSU and Xposed frameworks</string>
+    <string name="protection_type_anti_frida">Anti Frida</string>
+    <string name="protection_type_anti_frida_desc">Watches port 27042, gum-js-loop threads and frida-agent modules</string>
+    <string name="protection_type_anti_dexdump">Anti dexdump</string>
+    <string name="protection_type_anti_dexdump_desc">Hardens in memory dex dumping from external storage</string>
+    <string name="protection_type_anti_tampering">Anti tampering</string>
+    <string name="protection_type_anti_tampering_desc">Verifies CRC32, signature fingerprint and cross validation with flow obfuscation</string>
+    <string name="protection_type_signature_check">Signature verification</string>
+    <string name="protection_type_signature_check_desc">Matches the signing certificate against the fingerprint stored in the native blob</string>
+    <string name="protection_type_anti_debug">Anti debugging</string>
+    <string name="protection_type_anti_debug_desc">Blocks ptrace based debugging and tracerpid detectors</string>
+    <string name="protection_type_anti_emulator">Anti emulator</string>
+    <string name="protection_type_anti_emulator_desc">Identifies emulated platforms through sensors and system properties</string>
+    <string name="protection_active_count">%1$d of %2$d protections active</string>
+    <string name="protection_none_active">No protections enabled</string>
+
+    <!-- Keystore manager -->
+    <string name="keystore_title">Key manager</string>
+    <string name="keystore_subtitle">Import or generate the signing stores for your builds</string>
+    <string name="keystore_none">No stores saved</string>
+    <string name="keystore_import">Import keystore</string>
+    <string name="keystore_generate">Generate keystore</string>
+    <string name="keystore_generate_title">New PKCS12 store</string>
+    <string name="keystore_import_title">Import JKS or PKCS12 store</string>
+    <string name="keystore_name">Display name</string>
+    <string name="keystore_alias">Key alias</string>
+    <string name="keystore_password">Store password</string>
+    <string name="keystore_key_password">Key password</string>
+    <string name="keystore_common_name">Certificate common name</string>
+    <string name="keystore_generated">Store generated</string>
+    <string name="keystore_generated_password">Generated password</string>
+    <string name="keystore_generated_password_note">Save this password: it will not be shown again</string>
+    <string name="keystore_type">Type</string>
+    <string name="keystore_certificate">Certificate</string>
+    <string name="keystore_created">Created</string>
+    <string name="keystore_passwords_mismatch">Passwords do not match or are empty</string>
+    <string name="keystore_invalid">The file or password does not belong to a valid store</string>
+    <string name="keystore_in_use">Store in use</string>
+    <string name="keystore_use">Use for this build</string>
+    <string name="keystore_confirm_delete">Delete this store permanently</string>
+    <string name="keystore_copied">Password copied to clipboard</string>
+    <string name="keystore_read_error">The chosen file could not be read</string>
+    <string name="keystore_generated_for">Generated for %1$s</string>
+
+    <!-- Build -->
+    <string name="build_title">Build</string>
+    <string name="build_subtitle">Run the full protection and signing process</string>
+    <string name="build_start">Start build</string>
+    <string name="build_cancel">Cancel build</string>
+    <string name="build_confirm_cancel">Stop the process and discard current progress</string>
+    <string name="build_running">Building</string>
+    <string name="build_done">Build completed</string>
+    <string name="build_failed">The build failed</string>
+    <string name="build_validation_no_apk">Select an APK before building</string>
+    <string name="build_validation_no_methods">Select at least one method to convert</string>
+    <string name="build_validation_no_keystore">Choose a signing keystore</string>
+    <string name="build_logs">Live log</string>
+    <string name="build_clear_logs">Clear log</string>
+    <string name="build_elapsed">Duration</string>
+    <string name="build_stage_analyze">Input APK analysis</string>
+    <string name="build_stage_parse_dex">Dex document analysis</string>
+    <string name="build_stage_plan_selection">Method conversion plan</string>
+    <string name="build_stage_generate_native">C code generation</string>
+    <string name="build_stage_compile_native">Native engine packaging</string>
+    <string name="build_stage_inject_protections">Protection injection</string>
+    <string name="build_stage_package">APK repackaging</string>
+    <string name="build_stage_align_sign">Alignment and signing</string>
+    <string name="build_stage_verify">Final verification</string>
+    <string name="build_summary_selection">%1$d methods, %2$d protections</string>
+
+    <!-- Result -->
+    <string name="result_title">Result</string>
+    <string name="result_subtitle">Comparison between the original and protected APK</string>
+    <string name="result_not_available">Run a build to see results</string>
+    <string name="result_input">Original APK</string>
+    <string name="result_output">Protected APK</string>
+    <string name="result_size">Size</string>
+    <string name="result_dex_methods">Methods in dex</string>
+    <string name="result_native_methods">Native methods</string>
+    <string name="result_protections">Applied protections</string>
+    <string name="result_protections_none">None</string>
+    <string name="result_verify_title">Signature verification</string>
+    <string name="result_verified">Valid signature across all required schemes</string>
+    <string name="result_verify_failed">The signature could not be verified</string>
+    <string name="result_saved">APK saved to %1$s</string>
+    <string name="result_save_error">The APK could not be saved</string>
+    <string name="result_share_via">Share APK via</string>
+    <string name="result_growth">%1$d percent growth</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_general">General</string>
+    <string name="settings_section_build">Engine</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_es">Spanish</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_obfuscation">Obfuscation level</string>
+    <string name="settings_obfuscation_desc">Rotations applied to the native blob during generation</string>
+    <string name="settings_toolchain">NDK path</string>
+    <string name="settings_toolchain_desc">Toolchain used when compiling external native code</string>
+    <string name="settings_toolchain_hint">Resolved from environment variables when left empty</string>
+    <string name="settings_keep_signed">Keep signed copies</string>
+    <string name="settings_keep_signed_desc">Saves the signed APK of every build to internal storage</string>
+
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_description">Application protection tool that converts third party bytecode into hard to reverse native libraries and applies native countermeasures against analysis, tampering and debugging.</string>
+    <string name="about_author">Author</string>
+    <string name="about_license">License</string>
+    <string name="about_license_desc">Apache License 2.0</string>
+    <string name="about_changelog">Changelog</string>
+    <string name="about_changelog_desc">See the full version history in the repository</string>
+    <string name="about_version">Version</string>
+    <string name="about_source">Source code</string>
+</resources>
